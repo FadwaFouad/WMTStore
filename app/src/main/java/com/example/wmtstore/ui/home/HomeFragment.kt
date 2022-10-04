@@ -31,6 +31,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        // add menu to home page
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(HomeMenuProvider(), viewLifecycleOwner, Lifecycle.State.RESUMED)
 
@@ -38,18 +40,15 @@ class HomeFragment : Fragment() {
         homeViewModel.getAllProducts().observe(viewLifecycleOwner){ listOfProducts ->
             binding.listOfProducts.layoutManager= GridLayoutManager(requireContext(), 2,)
             binding.listOfProducts.adapter= ProductsAdapter(requireContext(), listOfProducts, childFragmentManager)
-
-
-           // Toast.makeText(requireContext(), "numbers of products = ${it.size}", Toast.LENGTH_LONG).show()
         }
     }
 }
 
+// class help to add menu to fragment
 class HomeMenuProvider() : MenuProvider {
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.home_menu, menu)
     }
-
     override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
         return true
     }

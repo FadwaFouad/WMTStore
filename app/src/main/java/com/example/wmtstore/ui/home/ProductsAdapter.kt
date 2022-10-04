@@ -36,7 +36,8 @@ class ProductsAdapter(
 
         // set onclick listener on item
         holder.itemView.setOnClickListener {
-            ProductDetailsFragment().show(fragmentmanger,"tag")
+            // show product details as bottom sheet
+            ProductDetailsFragment(product).show(fragmentmanger,"tag")
         }
     }
 
