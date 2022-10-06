@@ -34,10 +34,10 @@ class ProductDetailsFragment(val product: Product) : BottomSheetDialogFragment()
             .into(binding.productImage)
 
         // show details
-        binding.productName.text = product.name
-        binding.productPrice.text = "$${product.price}"
-        binding.productSize.text = product.size
-        binding.productSeller.text = product.seller
+        binding.productName.text = "Name: ${product.name}"
+        binding.productPrice.text = "Price : $${product.price}"
+        binding.productSize.text = "Size: ${product.size}"
+        binding.productSeller.text = "Seller: ${product.seller}"
 
         // add to card button
         binding.addToCartBtn.setOnClickListener {
