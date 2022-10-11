@@ -56,6 +56,7 @@ class CartAdapter(val context: Context, val cartViewModel: CartViewModel) :
 }
 
 class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    //add new comment
     val image: ImageView = itemView.findViewById(R.id.product_image)
     val productName: TextView = itemView.findViewById(R.id.product_name)
     val productPrice: TextView = itemView.findViewById(R.id.product_price)
