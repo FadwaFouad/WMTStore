@@ -1,5 +1,6 @@
 package com.example.wmtstore.ui.cart
 
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -33,14 +34,17 @@ class CartFragment : Fragment() {
         //add observe to RecycleView
         cartViewModel.getCarLiveData().observe(viewLifecycleOwner){
             initRecycleView ()
+            // show Price On Checkout btn
+            showPriceOnCheckout()
         }
 
         //Add line separator
         val dividerItemDecoration = DividerItemDecoration(requireContext(), RecyclerView.VERTICAL)
         binding!!.itemsInCard.addItemDecoration(dividerItemDecoration)
 
-        // add listener to checkout Btn
-        changeCheckoutBtn ()
+
+        // add listener to Checkout btn
+        changeCheckoutBtn()
 
     }
 
@@ -50,11 +54,17 @@ class CartFragment : Fragment() {
     }
     private fun changeCheckoutBtn (){
         binding!!.checkoutBtn.setOnClickListener {
-            val price = cartViewModel.getTotalPrice()
-            if (price == 0.0)
-                binding!!.checkoutBtn.text = "Checkout"
-            else
-            binding!!.checkoutBtn.text = "Checkout $price"
+           val intent = Intent(requireContext(), CheckoutActivity::class.java)
+            requireContext().startActivity(intent)
         }
+    }
+    private fun showPriceOnCheckout (){
+        val price = cartViewModel.getTotalPrice()
+        if (price == 0.0){
+            binding!!.checkoutBtn.text = "Checkout"
+            binding!!.checkoutBtn.isEnabled = false
+        }
+        else
+            binding!!.checkoutBtn.text = "Checkout $price"
     }
 }

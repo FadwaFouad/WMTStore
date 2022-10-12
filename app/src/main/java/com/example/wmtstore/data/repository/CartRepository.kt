@@ -44,6 +44,11 @@ object CartRepository {
         return price
     }
 
+    fun clearCart (){
+        selectedProducts.clear()
+        notifyChange()
+    }
+
     fun getSelectedProducts() = selectedProducts.toMap()
     fun getQuantity(product: Product): Int = selectedProducts[product]!!
 

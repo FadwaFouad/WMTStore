@@ -33,5 +33,6 @@ class CartViewModel : ViewModel() {
 
     fun getCarLiveData() : MutableLiveData<MutableMap<Product, Int>> = CartRepository.cartLiveData
     fun getTotalPrice() = CartRepository.getPrice()
+    fun clearCart() = CartRepository.clearCart()
 
 }

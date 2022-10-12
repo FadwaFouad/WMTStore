@@ -45,10 +45,10 @@ class ProductDetailsFragment(val product: Product) : BottomSheetDialogFragment()
             productsDetailsViewModel.saveToCart(product)
             // alert user with it has added
             Toast.makeText(requireContext(), "Save to Cart", Toast.LENGTH_LONG).show()
+            // close bottom sheet
+            this.dismiss()
         }
 
-
     }
-
 
 }

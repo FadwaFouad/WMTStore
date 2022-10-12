@@ -41,10 +41,10 @@ class CartAdapter(val context: Context, val cartViewModel: CartViewModel) :
         }
 
         holder.decreaseQty.setOnClickListener {
-            if (qty > 1)
-                cartViewModel.decreaseQuantity(product)
-            else
+            if (qty == 1)
                 holder.decreaseQty.isEnabled = false
+            else
+                cartViewModel.decreaseQuantity(product)
         }
         holder.delete.setOnClickListener {
             cartViewModel.deleteProduct(product)
