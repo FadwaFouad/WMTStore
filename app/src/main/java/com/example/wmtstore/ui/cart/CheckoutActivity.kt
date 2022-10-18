@@ -1,5 +1,6 @@
 package com.example.wmtstore.ui.cart
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -36,6 +37,8 @@ class CheckoutActivity : AppCompatActivity() {
             }
         }
     }
+
+
 
     private fun showConfirmationDialog() {
         AlertDialog.Builder(this)
