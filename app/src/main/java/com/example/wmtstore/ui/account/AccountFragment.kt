@@ -67,6 +67,7 @@ class AccountFragment : Fragment() {
             val intent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
+                .setTheme(R.style.Theme_WMTStore)
                 .build()
 
             //start the authentication flow

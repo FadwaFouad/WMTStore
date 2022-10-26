@@ -1,17 +1,20 @@
 package com.example.wmtstore.ui.account
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.wmtstore.R
 import com.example.wmtstore.databinding.FragmentProfileBinding
+import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -33,7 +36,6 @@ class ProfileFragment : Fragment() {
         profileContainer = binding.profileContainer
         // declare variables
         binding.username.text = user?.displayName
-        Toast.makeText(context, user?.displayName, Toast.LENGTH_LONG).show()
         binding.email.text = user?.email
 
         // load image
@@ -43,8 +45,11 @@ class ProfileFragment : Fragment() {
 
         // sign out user btn
         binding.signoutBtn.setOnClickListener {
-            auth.signOut()
-            showLoginScreen()
+            AuthUI.getInstance()
+                .signOut(requireContext())
+                .addOnCompleteListener { // user is now signed out
+                    showLoginScreen()
+                }
         }
       
 }
