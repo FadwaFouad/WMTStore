@@ -2,6 +2,8 @@ package com.example.wmtstore.ui.cart
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -50,13 +52,15 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
     private fun showConfirmationDialog() {
-        AlertDialog.Builder(this)
+       val dialog = AlertDialog.Builder(this )
             .setView(R.layout.layout_payment_successful)
             .setPositiveButton("OK") { _, _ ->
                 this@CheckoutActivity.finish()
             }
             .setCancelable(false)
             .show()
+        // make dialog box with rounded corners
+        dialog.getWindow()!!.setBackgroundDrawableResource(R.drawable.dialog_rounded_background);
     }
 
     private fun inputIsValid(): Boolean {
