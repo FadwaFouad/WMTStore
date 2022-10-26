@@ -30,9 +30,33 @@ class NotificationsFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.notificationsList.layoutManager = LinearLayoutManager(context)
-        binding.notificationsList.adapter = NotificationAdapter(requireContext(), notificationsViewModel.getAllNotifications(), notificationsViewModel )
+        notificationsViewModel.getNotifyLiveData().observe(viewLifecycleOwner){
+            val notifyList = notificationsViewModel.getAllNotifications()
+            if (notifyList.isNotEmpty())
+                initRecycleView()
+            else {
+                // no notifications
+                binding.notificationsList.visibility = View.GONE
+                binding.notFound.visibility = View.VISIBLE
+
+            }
+        }
+        // add horizontal line after each item
         binding.notificationsList.addItemDecoration(DividerItemDecoration(context,RecyclerView.VERTICAL))
+    }
+
+    private fun initRecycleView() {
+        // make list visible
+        binding.notificationsList.visibility = View.VISIBLE
+        binding.notFound.visibility = View.GONE
+
+        // init recycle view
+        binding.notificationsList.layoutManager = LinearLayoutManager(context)
+        binding.notificationsList.adapter = NotificationAdapter(
+            requireContext(),
+            notificationsViewModel.getAllNotifications(),
+            notificationsViewModel
+        )
     }
 
 

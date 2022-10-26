@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.wmtstore.R
 import com.example.wmtstore.data.models.Notification
+import java.text.SimpleDateFormat
 import java.util.*
 
 class NotificationAdapter(
@@ -29,7 +30,8 @@ class NotificationAdapter(
 
         //show date
         val date = Date(notification.time)
-        holder.date.text = date.toString()
+        val dateFormat= SimpleDateFormat("E, dd-MMM, h:mm a").format(date)
+        holder.date.text = dateFormat.toString()
 
         //show message
         holder.message.text = notification.message

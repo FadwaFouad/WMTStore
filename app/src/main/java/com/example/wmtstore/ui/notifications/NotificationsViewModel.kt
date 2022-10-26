@@ -2,9 +2,7 @@ package com.example.wmtstore.ui.notifications
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.wmtstore.data.models.Notification
 import com.example.wmtstore.data.repository.NotificationRepository
 
@@ -21,4 +19,6 @@ class NotificationsViewModel (application : Application): AndroidViewModel(appli
     fun deleteNotification(notification: Notification){
         notificationRepo.deleteNotification(notification)
     }
+    fun getNotifyLiveData() : MutableLiveData<MutableList<Notification>> = notificationRepo.notifyLiveData
+
 }
